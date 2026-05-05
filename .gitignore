@@ -1,0 +1,32 @@
+# Hugo
+public/
+resources/
+.hugo_build.lock
+hugo_stats.json
+
+# Vercel
+.vercel/
+
+# Secrets / env
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*-credentials*.json
+service-account*.json
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (in case of future tooling)
+node_modules/
+npm-debug.log
+yarn-error.log

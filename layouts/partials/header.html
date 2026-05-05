@@ -1,0 +1,22 @@
+<header class="site-header">
+  <nav class="site-nav">
+    <a href="{{ "/" | relLangURL }}" class="site-title">kurbanov.tech</a>
+    <ul class="nav-links">
+      {{ range .Site.Menus.main }}
+        <li><a href="{{ .URL | relLangURL }}"{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>{{ .Name }}</a></li>
+      {{ end }}
+      <li class="lang-switcher">
+        {{ $other := cond (eq .Site.Language.Lang "ru") "en" "ru" }}
+        {{ $label := cond (eq $other "ru") "RU" "EN" }}
+        {{ $aria := cond (eq $other "ru") "Переключить на русский" "Switch to English" }}
+        {{ $href := cond (eq $other "ru") "/" "/en/" }}
+        {{ range .Translations }}
+          {{ if eq .Site.Language.Lang $other }}
+            {{ $href = .RelPermalink }}
+          {{ end }}
+        {{ end }}
+        <a href="{{ $href }}" hreflang="{{ $other }}" aria-label="{{ $aria }}">{{ $label }}</a>
+      </li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,38 @@
+{{ define "main" }}
+<section class="intro">
+  <h1>{{ if eq .Site.Language.Lang "ru" }}Иван Курбанов{{ else }}Ivan Kurbanov{{ end }}</h1>
+  <p class="role">{{ .Site.Params.role }}</p>
+
+  <div class="bio">
+    {{ if eq .Site.Language.Lang "ru" }}
+    <p>Занимаюсь инфраструктурой, автоматизацией и платформенной разработкой.</p>
+    <p>Здесь — заметки о работе, технологиях и опыте.</p>
+    <p>Исследую как AI меняет DevOps — и строю <a href="https://rezone.dev">rezone.dev</a> как ответ на этот вопрос.</p>
+    <p class="break">Реальные задачи из продакшена. Решения, которые работают.</p>
+    {{ else }}
+    <p>I work on infrastructure, automation, and platform engineering.</p>
+    <p>Notes on work, technology, and experience.</p>
+    <p>Exploring how AI is changing DevOps — and building <a href="https://rezone.dev">rezone.dev</a> as my answer to that question.</p>
+    <p class="break">Real production problems. Solutions that work.</p>
+    {{ end }}
+  </div>
+</section>
+
+{{ $posts := where .Site.RegularPages "Section" "blog" }}
+{{ if $posts }}
+<section class="recent-posts">
+  <h2>{{ if eq .Site.Language.Lang "ru" }}Последнее из блога{{ else }}Latest from the blog{{ end }}</h2>
+  <ul class="post-list">
+    {{ range first 10 $posts }}
+    <li>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </li>
+    {{ end }}
+  </ul>
+  <a class="all-posts-link" href="{{ "/blog/" | relLangURL }}">
+    {{ if eq .Site.Language.Lang "ru" }}Все статьи →{{ else }}All posts →{{ end }}
+  </a>
+</section>
+{{ end }}
+{{ end }}
