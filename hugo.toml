@@ -29,7 +29,6 @@ disableKinds = ["taxonomy", "term"]
     locale = "en-US"
     weight = 2
     title = "Ivan Kurbanov"
-    contentDir = "content/en"
     [languages.en.params]
       description = "Notes on DevOps, infrastructure, and work"
       role = "Head of DevOps & Infrastructure"

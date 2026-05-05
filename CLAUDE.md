@@ -23,26 +23,24 @@ layouts/
 static/
   css/style.css           # all styles, single file
 content/
-  blog/                   # Russian articles (default lang)
-    _index.md             # blog section page
-    *.md                  # one file per article
-content/en/
-  blog/                   # English translations
-    _index.md
-    *.md
+  blog/                   # all blog articles (translations by filename suffix)
+    _index.md             # blog section page (Russian, default lang)
+    _index.en.md          # blog section page (English)
+    <slug>.md             # Russian article
+    <slug>.en.md          # English translation of the same article
 ```
 
 ## Bilingual content rules
 
-- Russian is the default language. Russian content lives in `content/`, served at `/`.
-- English content lives in `content/en/`, served at `/en/`.
-- To add a new article: create `content/blog/<slug>.md`. If translating, also create `content/en/blog/<slug>.md` with the same filename — Hugo links them automatically as translations.
+- Translations are matched **by filename suffix**, not by separate directories. Russian (default) is `<slug>.md`, English is `<slug>.en.md`. Both live side-by-side in `content/blog/`.
+- This is the standard Hugo "translation by filename" pattern. Avoid the alternate "translation by directory" pattern (`content/en/`) — it caused the EN content to leak into the RU RSS feed because the directory was nested inside `content/`.
+- Russian is served at `/`, English at `/en/` (via `defaultContentLanguageInSubdir = false`).
 - Front matter: `title`, `date` (ISO YYYY-MM-DD), optional `description`, optional `tags`.
-- The language switcher in the header is a hard-coded RU↔EN toggle — it links to the language root, not the page translation. Keep it that way unless asked to use `.Translations` for per-page translation links.
+- The language switcher uses `.Translations` to find the matching page in the other language and falls back to the language root if no translation exists. See `layouts/partials/header.html`.
 
 ## Adding a blog post
 
-1. Create `content/blog/<slug>.md` (Russian).
+1. Create `content/blog/<slug>.md` (Russian, default).
 2. Front matter:
    ```yaml
    ---
@@ -53,7 +51,7 @@ content/en/
    ---
    ```
 3. Body in Markdown. Inline HTML is allowed (`unsafe = true` in goldmark).
-4. (Optional) Mirror in `content/en/blog/<slug>.md` for the English version.
+4. (Optional) Mirror as `content/blog/<slug>.en.md` for the English version. Same filename stem links them as translations automatically.
 
 ## Local development
 
