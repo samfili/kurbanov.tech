@@ -8,47 +8,47 @@ enableEmoji = true
 disableKinds = ["taxonomy", "term"]
 
 [params]
-  author = "Ivan Kurbanov"
+author = "Ivan Kurbanov"
 
 [languages]
-  [languages.ru]
-    label = "Русский"
-    locale = "ru-RU"
-    weight = 1
-    title = "Иван Курбанов"
-    [languages.ru.params]
-      description = "Заметки о DevOps, инфраструктуре и работе"
-      role = "Head of DevOps & Infrastructure"
-    [[languages.ru.menu.main]]
-      name = "Блог"
-      url = "/blog/"
-      weight = 10
+[languages.ru]
+label = "Русский"
+locale = "ru-RU"
+weight = 1
+title = "Иван Курбанов"
+[languages.ru.params]
+description = "Заметки о DevOps, инфраструктуре и работе"
+role = "Head of DevOps & Infrastructure"
+[[languages.ru.menu.main]]
+name = "Блог"
+url = "/blog/"
+weight = 10
 
-  [languages.en]
-    label = "English"
-    locale = "en-US"
-    weight = 2
-    title = "Ivan Kurbanov"
-    [languages.en.params]
-      description = "Notes on DevOps, infrastructure, and work"
-      role = "Head of DevOps & Infrastructure"
-    [[languages.en.menu.main]]
-      name = "Blog"
-      url = "/blog/"
-      weight = 10
+[languages.en]
+label = "English"
+locale = "en-US"
+weight = 2
+title = "Ivan Kurbanov"
+[languages.en.params]
+description = "Notes on DevOps, infrastructure, and work"
+role = "Head of DevOps & Infrastructure"
+[[languages.en.menu.main]]
+name = "Blog"
+url = "/blog/"
+weight = 10
 
 [markup]
-  [markup.goldmark.renderer]
-    unsafe = true
-  [markup.highlight]
-    style = "github"
-    noClasses = true
-    lineNos = false
-    tabWidth = 2
+[markup.goldmark.renderer]
+unsafe = true
+[markup.highlight]
+style = "github-dark"
+noClasses = true
+lineNos = false
+tabWidth = 2
 
 [outputs]
-  home = ["HTML", "RSS"]
-  section = ["HTML", "RSS"]
+home = ["HTML", "RSS"]
+section = ["HTML", "RSS"]
 
 [permalinks]
-  blog = "/blog/:contentbasename/"
+blog = "/blog/:contentbasename/"
